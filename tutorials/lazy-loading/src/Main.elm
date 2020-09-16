@@ -5,6 +5,7 @@ import Html exposing (Html, div, text, ul)
 import Html.Attributes exposing (style)
 
 
+
 -- TYPES
 
 
@@ -50,7 +51,7 @@ update msg model =
                 newModel =
                     model ++ List.map (\n -> List.length model + n) initialModel
             in
-                ( newModel, Cmd.none )
+            ( newModel, Cmd.none )
 
 
 

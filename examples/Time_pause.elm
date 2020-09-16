@@ -4,11 +4,9 @@
 
 module Main exposing (..)
 
-import Html exposing (Html)
-
-
 --import Html
 
+import Html exposing (Html)
 import Html.Events exposing (onClick)
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
@@ -46,6 +44,7 @@ update msg model =
         Tick newTime ->
             if not model.paused then
                 ( Model newTime False, Cmd.none )
+
             else
                 ( model, Cmd.none )
 
@@ -70,10 +69,10 @@ clock time =
         sHandY =
             toString (50 + 40 * sin sAngle)
     in
-        svg [ viewBox "0 0 100 100", width "300px" ]
-            [ circle [ cx "50", cy "50", r "45", fill "#0B79CE" ] []
-            , line [ x1 "50", y1 "50", x2 sHandX, y2 sHandY, stroke "#023963" ] []
-            ]
+    svg [ viewBox "0 0 100 100", width "300px" ]
+        [ circle [ cx "50", cy "50", r "45", fill "#0B79CE" ] []
+        , line [ x1 "50", y1 "50", x2 sHandX, y2 sHandY, stroke "#023963" ] []
+        ]
 
 
 view : Model -> Html Msg
@@ -82,10 +81,11 @@ view model =
         btnText =
             if model.paused then
                 "Start"
+
             else
                 "Pause"
     in
-        Html.div []
-            [ clock model.time
-            , Html.button [ onClick PauseStart ] [ Html.text btnText ]
-            ]
+    Html.div []
+        [ clock model.time
+        , Html.button [ onClick PauseStart ] [ Html.text btnText ]
+        ]

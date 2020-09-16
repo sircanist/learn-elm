@@ -3,24 +3,17 @@ module SignupForm exposing (..)
 -- This is where our Elm logic lives.`module SignupForm` declares that this is
 -- the SignupForm module, which is how other modules will reference this one
 -- if they want to import it and reuse its code.
-
-
 -- Elm’s "import" keyword works similarly to "require" in node.js.
-
-import Html exposing (..)
-
-
 -- The “exposing (..)” option says that we want to bring the Html module’s contents
 -- into this file’s current namespace, so that instead of writing out
 -- Html.form and Html.label we can use "form" and "label" without the "Html."
-
-import Html.Events exposing (..)
-
-
 -- This works the same way; we also want to import the entire
 -- Html.Events module into the current namespace.
 
-import Html.Attributes exposing (id, type_, for, value, class)
+import Html exposing (..)
+import Html.Attributes exposing (class, for, id, type_, value)
+import Html.Events exposing (..)
+
 
 
 -- With this import we are only bringing a few specific functions into our
@@ -40,6 +33,7 @@ view model =
         ]
 
 
+
 -- Take a look at this starting model we’re passing to our view function.
 -- Note that in Elm syntax, we use = to separate fields from values
 -- instead of : like JavaScript uses for its object literals.
@@ -49,11 +43,13 @@ getErrors model =
     { username =
         if model.username == "" then
             "Please enter a username!"
+
         else
             ""
     , password =
         if model.password == "" then
             "Please enter a password!"
+
         else
             ""
     }
@@ -62,14 +58,18 @@ getErrors model =
 initialErrors =
     { username = "", password = "" }
 
+
 initialModel =
     { username = "", password = "", errors = initialErrors }
+
 
 update msg model =
     if msg.msgType == "VALIDATE" then
         ( { model | errors = getErrors model }, Cmd.none )
+
     else
         ( model, Cmd.none )
+
 
 main =
     Html.program
@@ -78,5 +78,7 @@ main =
         , update = update
         , subscriptions = \_ -> Sub.none
         }
+
+
 
 -- see: http://tech.noredink.com/post/129641182738/building-a-live-validated-signup-form-in-elm

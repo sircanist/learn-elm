@@ -81,9 +81,12 @@ viewValidation model =
     if String.length model.password == 0 then
         div [] []
         -- empty
+
     else if String.length model.password > 0 && String.length model.password < 8 then
         div [ style "color" "red" ] [ text "Passwords must be longer than 8 characters." ]
+
     else if model.password == model.passwordAgain then
         div [ style "color" "green" ] [ text "OK" ]
+
     else
         div [ style "color" "red" ] [ text "Passwords do not match!" ]

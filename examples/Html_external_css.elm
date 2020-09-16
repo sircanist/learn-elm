@@ -28,7 +28,7 @@ stylesheet =
         children =
             []
     in
-        node tag attrs children
+    node tag attrs children
 
 
 main =
@@ -39,4 +39,4 @@ main =
         hero =
             div [ id "hero", class "jumbotron" ] [ inner ]
     in
-        div [ id "outer" ] [ stylesheet, hero ]
+    div [ id "outer" ] [ stylesheet, hero ]

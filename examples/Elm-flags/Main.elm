@@ -52,8 +52,8 @@ view : Model -> Html Msg
 view model =
     div []
         [ span []
-            [ text (model.title) ]
-        , span [] [ text (model.url) ]
+            [ text model.title ]
+        , span [] [ text model.url ]
         ]
 
 

@@ -1,8 +1,8 @@
 module Tests exposing (..)
 
-import Test exposing (..)
 import Expect
 import FizzBuzz exposing (fizzBuzz)
+import Test exposing (..)
 
 
 all : Test

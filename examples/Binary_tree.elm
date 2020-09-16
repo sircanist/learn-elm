@@ -1,13 +1,16 @@
 {- OVERVIEW ------------------------------------------------------
 
-A "Tree" represents a binary tree. A "Node" in a binary tree
-always has two children. A tree can also be "Empty". Below I have
-defined "Tree" and a number of useful functions.
+   A "Tree" represents a binary tree. A "Node" in a binary tree
+   always has two children. A tree can also be "Empty". Below I have
+   defined "Tree" and a number of useful functions.
 
-This example also includes some challenge problems!
+   This example also includes some challenge problems!
 
------------------------------------------------------------------}
+   ----------------------------------------------------------------
+-}
 
+
+module Main exposing (Tree(..), deepTree, depth, display, empty, fromList, insert, main, map, niceTree, singleton)
 
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (style)
@@ -35,18 +38,18 @@ singleton v =
 insert : comparable -> Tree comparable -> Tree comparable
 insert x tree =
     case tree of
-      Empty ->
-          singleton x
+        Empty ->
+            singleton x
 
-      Node y left right ->
-          if x > y then
-              Node y left (insert x right)
+        Node y left right ->
+            if x > y then
+                Node y left (insert x right)
 
-          else if x < y then
-              Node y (insert x left) right
+            else if x < y then
+                Node y (insert x left) right
 
-          else
-              tree
+            else
+                tree
 
 
 fromList : List comparable -> Tree comparable
@@ -57,17 +60,21 @@ fromList xs =
 depth : Tree a -> Int
 depth tree =
     case tree of
-      Empty -> 0
-      Node v left right ->
-          1 + max (depth left) (depth right)
+        Empty ->
+            0
+
+        Node v left right ->
+            1 + max (depth left) (depth right)
 
 
 map : (a -> b) -> Tree a -> Tree b
 map f tree =
     case tree of
-      Empty -> Empty
-      Node v left right ->
-          Node (f v) (map f left) (map f right)
+        Empty ->
+            Empty
+
+        Node v left right ->
+            Node (f v) (map f left) (map f right)
 
 
 
@@ -75,24 +82,24 @@ map f tree =
 
 
 deepTree =
-  fromList [1,2,3]
+    fromList [ 1, 2, 3 ]
 
 
 niceTree =
-  fromList [2,1,3]
+    fromList [ 2, 1, 3 ]
 
 
 main =
-  div [ style [ ("font-family", "monospace") ] ]
-    [ display "depth deepTree" (depth deepTree)
-    , display "depth niceTree" (depth niceTree)
-    , display "incremented" (map (\n -> n + 1) niceTree)
-    ]
+    div [ style "font-family" "monospace" ]
+        [ display "depth deepTree" (depth deepTree)
+        , display "depth niceTree" (depth niceTree)
+        , display "incremented" (map (\n -> n + 1) niceTree)
+        ]
 
 
 display : String -> a -> Html msg
 display name value =
-  div [] [ text (name ++ " ==> " ++ toString value) ]
+    div [] [ text (name ++ " ==> " ++ toString value) ]
 
 
 
@@ -134,7 +141,3 @@ Exercises:
     More info at: http://en.wikipedia.org/wiki/Tree_traversal
 
 -----------------------------------------------------------------}
-
-
-
-

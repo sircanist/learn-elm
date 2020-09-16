@@ -1,7 +1,10 @@
 module App exposing (..)
 
-import Html exposing (Html, button, div, text, program)
+import Browser
+import Html exposing (Html, button, div, text)
 import Html.Events exposing (onClick)
+
+
 
 -- MODEL
 
@@ -10,8 +13,8 @@ type alias Model =
     Bool
 
 
-init : ( Model, Cmd Msg )
-init =
+init : () -> ( Model, Cmd Msg )
+init _ =
     ( False, Cmd.none )
 
 
@@ -32,12 +35,13 @@ view : Model -> Html Msg
 view model =
     if model then
         div []
-            [ button [ onClick Collapse ] [text "Collapse" ]
+            [ button [ onClick Collapse ] [ text "Collapse" ]
             , text "Widget"
             ]
-    else 
+
+    else
         div []
-            [ button [ onClick Expand ] [text "Expand"] ]
+            [ button [ onClick Expand ] [ text "Expand" ] ]
 
 
 
@@ -49,6 +53,7 @@ update msg model =
     case msg of
         Expand ->
             ( True, Cmd.none )
+
         Collapse ->
             ( False, Cmd.none )
 
@@ -66,9 +71,9 @@ subscriptions model =
 -- MAIN
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    program
+    Browser.element
         { init = init
         , view = view
         , update = update

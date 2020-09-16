@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Events exposing (onClick)
 
 
+
 {- Defining ports
    Here we are going to define ports where our elm application
    is going to send or receive messages to or from JavaScript
@@ -86,15 +87,16 @@ view : Model -> Html Msg
 view model =
     let
         playPauseBtn =
-            if (model.playing) then
+            if model.playing then
                 button [ onClick Pause ] [ text "Pause" ]
+
             else
                 button [ onClick (Play "audio.mp3") ] [ text "Play" ]
     in
-        div []
-            [ playPauseBtn
-            , button [ onClick Stop ] [ text "Stop" ]
-            ]
+    div []
+        [ playPauseBtn
+        , button [ onClick Stop ] [ text "Stop" ]
+        ]
 
 
 

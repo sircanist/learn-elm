@@ -13,6 +13,7 @@ import Html.Events exposing (onClick, onInput)
 import String
 
 
+
 -- see: http://package.elm-lang.org/packages/elm-lang/core/latest/Char
 
 
@@ -84,18 +85,25 @@ validate : Model -> Validation
 validate model =
     if model.password /= model.pwAgain then
         Error "Passwords don't match"
+
     else if String.length model.password < 8 then
         Error "Password must be 8 characters or more"
+
     else if not (String.any isDigit model.password) then
         Error "Password must contain digits"
+
     else if not (String.any isUpper model.password) then
         Error "Password must contain uppercase"
+
     else if not (String.any isLower model.password) then
         Error "Password must contain lowercase"
+
     else if String.length model.age == 0 then
         Error "Enter age"
+
     else if not (String.all isDigit model.age) then
         Error "Age must be a number"
+
     else
         Ok
 

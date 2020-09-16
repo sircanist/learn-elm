@@ -2,7 +2,7 @@
 -- https://guide.elm-lang.org/architecture/user_input/buttons.html
 
 
-module Main exposing (Model, Msg(..), init, main, update, view)
+module Buttons exposing (Model, Msg(..), init, main, update, view)
 
 import Browser
 import Html exposing (..)

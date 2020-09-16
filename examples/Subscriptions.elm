@@ -1,12 +1,11 @@
 module App exposing (..)
 
-import Html exposing (Html, button, div, text, program)
-
-
 -- import Html.Events exposing (onClick)
 
-import Mouse
+import Html exposing (Html, button, div, program, text)
 import Keyboard
+import Mouse
+
 
 
 -- MODEL
@@ -37,7 +36,7 @@ type Msg
 view : Model -> Html Msg
 view model =
     div []
-        [ text (toString model) ]
+        [ text (String.fromInt model) ]
 
 
 

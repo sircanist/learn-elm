@@ -8,16 +8,14 @@ module FizzBuzz exposing (..)
 -- this means, we can call its functions without having to prepend the name of the module
 -- so we can call [text](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#text)
 -- just using the name function 'text' instead of 'Html.text'
-
-import Html exposing (..)
-
-
 -- Now we are importing List an String modules. In this case we are not exposing
 -- any function, so we if we want to use any of their function we have to access
 -- to them prepending the name of the module like `List.map` or `String.isEmpty`
 
+import Html exposing (..)
 import List
 import String
+
 
 
 -- Under this lines we are defining our fizzbuzz function. The first line is
@@ -34,34 +32,37 @@ fizzBuzz n =
         -- if a number module 3 is 0 then we will return Just "Fizz"
         -- otherwise we will return Nothing
         fizz n =
-            if (n % 3 == 0) then
+            if modBy 3 n == 0 then
                 Just "Fizz"
+
             else
                 Nothing
 
         -- if a number module 5 is 0 then we will return Just "Buzz"
         -- otherwise we will return Nothing
         buzz n =
-            if (n % 5 == 0) then
+            if modBy 5 n == 0 then
                 Just "Buzz"
+
             else
                 Nothing
     in
-        -- We will map our list with fizz an buzz funtions over
-        -- an anonimous function executing them with our input number 'n'
-        -- if any of them return Nothing, it will be filtered and it won't be
-        -- in the returned list.
-        List.filterMap (\fn -> fn n) [ fizz, buzz ]
-            |> String.concat
-            -- concat them
-            |>
-                \fizzbuzz ->
-                    if (String.isEmpty fizzbuzz) then
-                        toString n
-                        -- if for that imput is not Fizz, neither Buzz
-                        -- we will return a string with the input number
-                    else
-                        fizzbuzz
+    -- We will map our list with fizz an buzz funtions over
+    -- an anonimous function executing them with our input number 'n'
+    -- if any of them return Nothing, it will be filtered and it won't be
+    -- in the returned list.
+    List.filterMap (\fn -> fn n) [ fizz, buzz ]
+        |> String.concat
+        -- concat them
+        |> (\fizzbuzz ->
+                if String.isEmpty fizzbuzz then
+                    toString n
+                    -- if for that imput is not Fizz, neither Buzz
+                    -- we will return a string with the input number
+
+                else
+                    fizzbuzz
+           )
 
 
 
@@ -84,4 +85,4 @@ main =
                 |> List.map List.singleton
                 |> List.map (li [])
     in
-        ul [] fizzNumbers
+    ul [] fizzNumbers
